@@ -5,3 +5,5 @@ function solution(n) {
   }
   return answer;
 }
+// n	return
+// 12	28

@@ -8,3 +8,5 @@ function solution(n) {
   }
   return answer;
 }
+// n	result
+// 10	3
