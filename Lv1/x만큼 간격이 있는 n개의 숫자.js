@@ -3,5 +3,7 @@ function solution(x, n) {
     .fill(x)
     .map((e, i) => e + x * i);
 }
-/* x	n	answer
-  2	5	[2,4,6,8,10] */
+/* 
+x	n	answer
+2	5	[2,4,6,8,10] 
+*/
