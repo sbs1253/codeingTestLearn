@@ -1,0 +1,19 @@
+function solution(s) {
+  let answer = false;
+  let left = 0;
+  let right = 0;
+  let stringArr = [...s];
+  stringArr.forEach((e) => {
+    e == '(' ? (left += 1) : (right += 1);
+  });
+  if (left === right)
+    if (stringArr[0] != '(') {
+      stringArr.splice(stringArr.indexOf('('), 1);
+      stringArr.splice(stringArr.indexOf(')'), 1);
+    }
+  if (stringArr.at(0) == '(' && stringArr.at(-1) == ')') {
+    answer = true;
+  }
+  return answer;
+}
+console.log(solution('()()('));
