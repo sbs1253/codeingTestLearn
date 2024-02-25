@@ -7,17 +7,19 @@ function solution(s) {
       if (s[i] === '(' || s[i] === '{' || s[i] === '[') {
         stack.push(s[i]);
       } else if (s[i] === ')') {
-        if (stack.indexOf('(') !== -1) stack.splice(stack.indexOf('('), 1);
-        else break;
+        if (stack.lastIndexOf('(') === stack.length - 1 && stack.indexOf('(') !== -1) {
+          stack.splice(stack.lastIndexOf('('), 1);
+        } else break;
       } else if (s[i] === '}') {
-        if (stack.indexOf('{') !== -1) stack.splice(stack.indexOf('{'), 1);
+        if (stack.lastIndexOf('{') === stack.length - 1 && stack.indexOf('{') !== -1)
+          stack.splice(stack.lastIndexOf('{'), 1);
         else break;
       } else if (s[i] === ']') {
-        if (stack.indexOf('[') !== -1) stack.splice(stack.indexOf('['), 1);
+        if (stack.lastIndexOf('[') === stack.length - 1 && stack.indexOf('[') !== -1)
+          stack.splice(stack.lastIndexOf('['), 1);
         else break;
       }
       result += 1;
-      console.log(stack);
     }
     result === s.length && stack.length === 0 ? (answer += 1) : answer;
     stack = [];
@@ -27,4 +29,5 @@ function solution(s) {
 
   return answer;
 }
-console.log(solution('{ ( } )'));
+console.log(solution('({()})'));
+// console.log(solution('[](){}'));
