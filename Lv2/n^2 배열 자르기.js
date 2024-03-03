@@ -1,25 +1,18 @@
 function solution(n, left, right) {
-  let answer = [];
-  let arr = Array(n ** 2).fill(0);
-  for (let i = 1; i <= arr.length; i++) {
+  let arr = [];
+  let a = Math.floor(left / n) + 1;
+  let b = left % n;
+  let c = Math.floor(right / n) + 1;
+  let d = n * (c - a) + (right % n) + 1;
+
+  for (let i = a; i <= c; i++) {
+    if (arr.length > right) break;
     for (let j = 1; j <= n; j++) {
-      if (i % n <= j) {
-        arr[j] = i;
-      } else {
-        arr[j] = j;
-      }
+      if (i <= j) arr.push(j);
+      else arr.push(i);
     }
   }
-  console.log(arr);
-  return answer;
+  return arr.slice(b, d);
 }
 
-// [1,2,3,4]
-// [2,2,3,4]
-// [3,3,3,4]
-// [4,4,4,4]
-
-// [1,2,3]
-// [2,2,3]
-// [3,3,3]
-console.log(solution(3, 2, 5));
+console.log(solution(4, 7, 14));
