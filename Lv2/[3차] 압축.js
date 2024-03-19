@@ -1,23 +1,25 @@
 function solution(msg) {
   let answer = [];
   let obj = [];
+  let str = '';
+  let arr = [...msg];
   for (let i = 65; i <= 90; i++) {
     obj[String.fromCharCode(i)] = i - 64;
   }
-  for (let i = 0; i < msg.length; i++) {
-    for (let j = 1; j <= msg.length; j++) {
-      if (obj[msg.slice(0, j + 1)]) {
-        continue;
-      } else {
-        answer.push(obj[msg.slice(0, j)]);
-        obj[msg.slice(0, j + 1)] = Object.keys(obj).length + 1;
-        msg = msg.slice(j);
-        break;
-      }
+  while (arr.length > 0) {
+    let c = arr.shift();
+    if (obj[str + c] !== undefined) {
+      str = str + c;
+    } else {
+      answer.push(obj[str]);
+      obj[str + c] = Object.keys(obj).length + 1;
+      arr.unshift(c);
+      str = '';
     }
-    // console.log(msg);
   }
-  console.log(obj);
+  if (str !== '') {
+    answer.push(obj[str]);
+  }
   return answer;
 }
 console.log(solution('KAKAO'));
