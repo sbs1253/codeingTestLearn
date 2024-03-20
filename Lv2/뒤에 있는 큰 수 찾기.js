@@ -1,12 +1,13 @@
 function solution(numbers) {
-  let answer = [];
-  while (numbers.length > 0) {
-    let num = numbers.shift();
-    let maxNum = numbers.find((e) => e > num);
-    if (maxNum > num) answer.push(maxNum);
-    else answer.push(-1);
-  }
+  let answer = new Array(numbers.length).fill(-1);
+  let stack = [];
 
+  for (let i = 0; i < numbers.length; i++) {
+    while (stack.length > 0 && numbers[i] > numbers[stack[stack.length - 1]]) {
+      answer[stack.pop()] = numbers[i];
+    }
+    stack.push(i);
+  }
   return answer;
 }
 console.log(solution([2, 3, 3, 5]));
