@@ -10,8 +10,7 @@ function solution(maps) {
     [0, -1],
     [0, 1],
   ];
-  let que = new Set();
-  que.add(`${startX},${startY}`);
+
   while (start.length > 0) {
     let [x, y, r] = start.shift();
     if (x == maps.length - 1 && y == maps[0].length - 1) {
@@ -22,13 +21,10 @@ function solution(maps) {
       let goX = x + dx;
       let goY = y + dy;
       if (goX <= maps.length - 1 && goX >= 0 && goY <= maps[0].length - 1 && goY >= 0 && maps[goX][goY] === 1) {
-        if (!que.has(`${goX},${goY}`)) {
-          que.add(`${goX},${goY}`);
-          start.push([goX, goY, r + 1]);
-        }
+        maps[goX][goY] = 0;
+        start.push([goX, goY, r + 1]);
       }
     }
-    console.log(que);
   }
   return answer !== 0 ? answer : -1;
 }
