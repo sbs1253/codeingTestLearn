@@ -1,25 +1,19 @@
 function solution(skill, skill_trees) {
   let tree = [...skill];
-  let arr = [];
+  let answer = 0;
+  let reg = new RegExp(`[^${skill}]`, 'g');
   skill_trees.forEach((e) => {
     let strindex = [];
+    let num = e.replace(reg, '');
     for (let i = 0; i < tree.length; i++) {
-      let num = e.indexOf(tree[i]);
-      console.log(e.replace(/[^CBD]/g, ''));
-      if (strindex.length > 0 && strindex[strindex.length - 1] > num) {
-        strindex = [];
-        break;
+      if (num[i] == tree[i]) {
+        strindex.push(num[i]);
       }
-
-      strindex.push(num);
     }
-    // console.log(strindex);
-
-    arr.push(strindex);
+    num.length == strindex.length ? (answer += 1) : undefined;
   });
 
-  console.log(arr);
-  return arr.length;
+  return answer;
 }
 
 console.log(solution('CBD', ['BACDE', 'CBADF', 'AECB', 'BDA']));
