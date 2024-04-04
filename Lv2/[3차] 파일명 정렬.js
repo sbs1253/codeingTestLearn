@@ -8,7 +8,6 @@ function solution(files) {
     b.unshift(a[0]);
     arr.push([...b, i]);
   });
-
   let result = arr.sort((a, b) => {
     if (a[0] < b[0]) {
       return -1;
