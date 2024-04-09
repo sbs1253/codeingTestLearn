@@ -1,5 +1,4 @@
 function solution(dirs) {
-  let answer = 0;
   let run = {
     U: [1, 0],
     D: [-1, 0],
@@ -18,11 +17,10 @@ function solution(dirs) {
     }
 
     maps.add(start[0] + ',' + start[1] + ',' + startX + ',' + startY);
-    maps.add(start[1] + ',' + start[0] + ',' + startY + ',' + startX);
+    maps.add(startX + ',' + startY + ',' + start[0] + ',' + start[1]);
 
     start = [startX, startY];
   }
-
   return maps.size / 2;
 }
-console.log(solution('UDLRDURL'));
+console.log(solution('LUDR'));
