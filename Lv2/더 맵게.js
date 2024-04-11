@@ -3,45 +3,39 @@ function solution(scoville, K) {
   let arr = scoville.sort((a, b) => a - b);
   let newArr = [];
   let arrIndex = 0;
-  let newIndex = 0;
+  let newArrIndex = 0;
+  let cal = [];
+  let index = 0;
+  while (index < scoville.length - 1) {
+    cal = [];
+    for (let i = 0; i < 2; i++) {
+      if (newArr.length > 0 && newArr[newArrIndex]) {
+        if (arr[arrIndex] <= newArr[newArrIndex]) {
+          cal.push(arr[arrIndex]);
+          arrIndex++;
+        } else if (arr[arrIndex] > newArr[newArrIndex] || !arr[arrIndex]) {
+          cal.push(newArr[newArrIndex]);
 
-  if (arr[0] >= K) return answer;
-  else {
-    newArr.push(arr[0] + arr[1] * 2);
-    arrIndex = 2;
+          newArrIndex++;
+        }
+      } else {
+        cal.push(arr[arrIndex]);
+        arrIndex++;
+      }
+    }
+
+    cal.sort((a, b) => a - b);
+    newArr.push(cal[0] + cal[1] * 2);
+    if (cal[0] >= K && cal[1] >= K) {
+      return answer;
+    }
     answer++;
+    index++;
+
+    if (isNaN(newArr[newArr.length - 1])) return -1;
   }
-
-  while (arr[arrIndex] < K || newArr[newIndex] < K) {
-    let minNum;
-    let nextMinNum;
-    if ((arr[arrIndex] >= K && newArr[newIndex] >= K) || arrIndex >= arr.length) {
-      break;
-    }
-    console.log(arr[arrIndex], newArr[newIndex], arrIndex);
-    console.log(arr, newArr);
-    if (arr[arrIndex] <= newArr[newIndex]) {
-      minNum = arr[arrIndex];
-      arrIndex++;
-    } else {
-      minNum = newArr[newIndex];
-      newIndex++;
-    }
-
-    if (arr[arrIndex] <= newArr[newIndex]) {
-      nextMinNum = arr[arrIndex];
-      arrIndex++;
-    } else {
-      nextMinNum = newArr[newIndex];
-      newIndex++;
-    }
-
-    newArr.push(minNum + nextMinNum * 2);
-    answer++;
-  }
-
-  if (arr[arrIndex] < K || newArr[newIndex] < K) answer = -1;
-  return answer;
+  if (newArr[newArr.length - 1] > K) return answer;
+  else return -1;
 }
 
-console.log(solution([1, 1, 1, 1, 1, 1], 6));
+console.log(solution([1, 1, 1, 10], 9));
