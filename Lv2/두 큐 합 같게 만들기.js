@@ -6,6 +6,7 @@ function solution(queue1, queue2) {
   if ((result1 + result2) % 2 === 1) return -1;
 
   let limit = 2 * (queue1.length + queue2.length);
+  // 한번씩 값이 바뀌고 다시 원래대로 돌아가기 위해 최대 2번의 순서이동이 필요
   let idx1 = 0;
   let idx2 = 0;
   for (let i = 0; i < limit; i++) {
